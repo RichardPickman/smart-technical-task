@@ -4,7 +4,7 @@ import { S3BucketOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
 import { BlockPublicAccess, Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
 import { Construct } from 'constructs';
-import * as path from 'path';
+import path from 'path';
 
 export class StaticSiteStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {

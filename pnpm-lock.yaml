@@ -20,12 +20,18 @@ importers:
       '@reduxjs/toolkit':
         specifier: ^2.2.7
         version: 2.2.7(react-redux@9.1.2(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1))(react@18.3.1)
+      aws-cdk-lib:
+        specifier: ^2.158.0
+        version: 2.158.0(constructs@10.3.0)
       class-variance-authority:
         specifier: ^0.7.0
         version: 0.7.0
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      constructs:
+        specifier: ^10.3.0
+        version: 10.3.0
       framer-motion:
         specifier: ^11.5.4
         version: 11.5.4(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -41,6 +47,9 @@ importers:
       react-redux:
         specifier: ^9.1.2
         version: 9.1.2(@types/react@18.3.5)(react@18.3.1)(redux@5.0.1)
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
       tailwind-merge:
         specifier: ^2.5.2
         version: 2.5.2
@@ -69,15 +78,12 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.45)
-      aws-cdk-lib:
+      aws-cdk:
         specifier: ^2.158.0
-        version: 2.158.0(constructs@10.3.0)
+        version: 2.158.0
       aws-sdk:
         specifier: ^2.1691.0
         version: 2.1691.0
-      constructs:
-        specifier: ^10.3.0
-        version: 10.3.0
       esbuild:
         specifier: ^0.23.1
         version: 0.23.1
@@ -102,9 +108,6 @@ importers:
       prettier:
         specifier: 3.3.3
         version: 3.3.3
-      source-map-support:
-        specifier: ^0.5.21
-        version: 0.5.21
       tailwindcss:
         specifier: ^3.4.10
         version: 3.4.10(ts-node@10.9.2(@types/node@22.5.4)(typescript@5.6.2))
@@ -1292,6 +1295,11 @@ packages:
       - yaml
       - mime-types
 
+  aws-cdk@2.158.0:
+    resolution: {integrity: sha512-UcrxBG02RACrnTvfuyZiTuOz8gqOpnqjCMTdVmdpExv5qk9hddhtRAubNaC4xleHuNJnvskYqqVW+Y3Abh6zGQ==}
+    engines: {node: '>= 14.15.0'}
+    hasBin: true
+
   aws-sdk@2.1691.0:
     resolution: {integrity: sha512-/F2YC+DlsY3UBM2Bdnh5RLHOPNibS/+IcjUuhP8XuctyrN+MlL+fWDAiela32LTDk7hMy4rx8MTgvbJ+0blO5g==}
     engines: {node: '>= 10.0.0'}
@@ -1603,6 +1611,11 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  fsevents@2.3.2:
+    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+    engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
 
   fsevents@2.3.3:
     resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
@@ -3828,6 +3841,10 @@ snapshots:
       '@aws-cdk/cloud-assembly-schema': 36.0.25
       constructs: 10.3.0
 
+  aws-cdk@2.158.0:
+    optionalDependencies:
+      fsevents: 2.3.2
+
   aws-sdk@2.1691.0:
     dependencies:
       buffer: 4.9.2
@@ -4186,6 +4203,9 @@ snapshots:
     optionalDependencies:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+
+  fsevents@2.3.2:
+    optional: true
 
   fsevents@2.3.3:
     optional: true
