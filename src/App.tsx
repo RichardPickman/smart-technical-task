@@ -1,8 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChangeEvent, useEffect } from 'react';
+import { X } from 'lucide-react';
+import { ChangeEvent, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import './App.css';
+import { Button } from './components/ui/button';
 import { Input } from './components/ui/input';
+import { Label } from './components/ui/label';
 import {
     Table,
     TableBody,
@@ -18,29 +21,46 @@ import { fetchUsers } from './store/reducers/users';
 import { AppDispatch, RootState } from './store/store';
 import { User } from './types';
 
-const TableHeadWithSearch = ({ field }: { field: TableKey }) => {
+const InputWithSearch = ({ field }: { field: TableKey }) => {
     const values = useSelector(
         (state: RootState) => state.filterReducer.values,
     );
     const query = values[field];
+    const inputRef = useRef<HTMLInputElement>(null);
     const dispatch = useDispatch<AppDispatch>();
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) =>
         dispatch(setValue({ key: field, value: e.target.value }));
 
+    const clearInput = () => {
+        dispatch(setValue({ key: field, value: '' }));
+
+        inputRef.current?.focus();
+    };
+
     return (
-        <TableHead className="m-0 p-0 divide-x-2">
-            <Input
-                className={cn(
-                    'w-full h-full m-0 rounded-none border-none',
-                    query ? 'bg-slate-200' : 'bg-background',
-                )}
-                type="text"
-                key={field + '-input'}
-                placeholder={field}
-                onChange={onChange}
-            />
-        </TableHead>
+        <div className="relative flex flex-col gap-2 my-2 mx-0">
+            <Label className="capitalize">{field}:</Label>
+            <div className="relative">
+                <Input
+                    key={field + '-input'}
+                    ref={inputRef}
+                    className={cn(query ? 'bg-slate-100' : 'bg-background')}
+                    value={query}
+                    onChange={onChange}
+                />
+                <Button
+                    variant="ghost"
+                    onClick={clearInput}
+                    className={cn(
+                        'absolute w-fit h-fit p-1 right-2 top-1/2 -translate-y-1/2',
+                        !query ? 'invisible' : 'block',
+                    )}
+                >
+                    <X className="w-3 h-3" />
+                </Button>
+            </div>
+        </div>
     );
 };
 
@@ -49,6 +69,7 @@ const MotionTableRow = motion.create(TableRow);
 const UserRow = ({ user }: { user: User }) => (
     <MotionTableRow
         key={user.id}
+        className="mx-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -74,14 +95,24 @@ const App = () => {
     }, [dispatch]);
 
     return (
-        <Table className="w-fit mx-auto border">
-            <TableHeader>
-                <TableRow className="border rounded">
-                    <TableHeadWithSearch field="id" />
-                    <TableHeadWithSearch field="name" />
-                    <TableHeadWithSearch field="username" />
-                    <TableHeadWithSearch field="email" />
-                    <TableHeadWithSearch field="phone" />
+        <Table className="w-fit mx-auto ">
+            <TableHeader className="h-full">
+                <TableRow>
+                    <TableHead>
+                        <InputWithSearch field="id" />
+                    </TableHead>
+                    <TableHead>
+                        <InputWithSearch field="name" />
+                    </TableHead>
+                    <TableHead>
+                        <InputWithSearch field="username" />
+                    </TableHead>
+                    <TableHead>
+                        <InputWithSearch field="email" />
+                    </TableHead>
+                    <TableHead>
+                        <InputWithSearch field="phone" />
+                    </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody className="relative">
