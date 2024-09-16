@@ -20,7 +20,7 @@ export const fetchUsers = createAsyncThunk<User[]>(
         const users = (await response.json()) as User[];
 
         return users.map((user, index) => ({
-            id: String(index),
+            id: String(index + 1),
             name: user.name,
             username: user.username,
             email: user.email,
