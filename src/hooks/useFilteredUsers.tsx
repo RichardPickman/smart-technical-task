@@ -11,17 +11,15 @@ export const useFilteredUsers = (users: User[]) => {
         (state: RootState) => state.filterReducer.values,
     );
 
-    const filtered = useMemo(
-        () =>
-            users.filter((user) =>
-                Object.entries(user).every((tuple) => {
-                    const [key, value] = tuple as [keyof User, string];
+    const filtered = useMemo(() => {
+        const filters = Object.entries(values);
 
-                    return isMatch(value, values[key]);
-                }),
+        return users.filter((user) =>
+            filters.every(([key, value]) =>
+                key in user ? isMatch(user[key as keyof User], value) : false,
             ),
-        [users, values],
-    );
+        );
+    }, [users, values]);
 
     return { users: filtered };
 };
