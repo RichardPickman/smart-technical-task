@@ -21,6 +21,18 @@ import { fetchUsers } from './store/reducers/users';
 import { AppDispatch, RootState } from './store/store';
 import { User } from './types';
 
+const MotionTableRow = motion.create(TableRow);
+
+/**
+ * This component is used to filter the users list by the given field.
+ * It also displays the labeled input field and the clear button.
+ * Utilized own store to save the filter values in global redux store.
+ *
+ * @param field - The field to filter the users list by.
+ *
+ * @returns The input field and clear button for the given field.
+ */
+
 const InputWithSearch = ({ field }: { field: TableKey }) => {
     const values = useSelector(
         (state: RootState) => state.filterReducer.values,
@@ -66,7 +78,15 @@ const InputWithSearch = ({ field }: { field: TableKey }) => {
     );
 };
 
-const MotionTableRow = motion.create(TableRow);
+/**
+ * This component is used to display the user data in a table row.
+ * Utilizes Motion for animations.
+ * It also displays the user's id, name, username, email, and phone number.
+ *
+ * @param user - The user component object.
+ *
+ * @returns The table row for the given user.
+ */
 
 const UserRow = ({ user }: { user: User }) => (
     <MotionTableRow
@@ -83,6 +103,11 @@ const UserRow = ({ user }: { user: User }) => (
         <TableCell>{user.phone}</TableCell>
     </MotionTableRow>
 );
+
+/**
+ * This component is the main component of the application.
+ * It displays the users list with a search bar and a table row for each user.
+ */
 
 const App = () => {
     const users = useSelector((state: RootState) => state.usersReducer.users);

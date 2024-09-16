@@ -34,6 +34,11 @@ const initialState: UsersState = {
     loading: 'idle',
 } satisfies UsersState;
 
+/**
+ * This slice is used to manage the state of the users.
+ * It includes the users array, loading state, and fetch users thunk.
+ */
+
 export const usersSlice = createSlice({
     name: 'users',
     initialState,
