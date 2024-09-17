@@ -1,6 +1,6 @@
 {
     "profile": "richardpickman",
-    "app": "npx tsx bin/stack.ts",
+    "app": "npx tsx --tsconfig cdk.tsconfig.json ./bin/stack.ts",
     "watch": {
         "include": ["**"],
         "exclude": [

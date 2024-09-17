@@ -3,7 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "bin": {
-        "stack": "bin/stack.js"
+        "stack": "bin/stack.ts"
     },
     "type": "module",
     "scripts": {
