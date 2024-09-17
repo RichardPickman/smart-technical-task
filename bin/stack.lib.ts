@@ -1,10 +1,12 @@
 import { CfnOutput, Stack, StackProps } from 'aws-cdk-lib';
 import { Distribution, OriginAccessIdentity } from 'aws-cdk-lib/aws-cloudfront';
 import { S3BucketOrigin } from 'aws-cdk-lib/aws-cloudfront-origins';
-import { BlockPublicAccess, Bucket } from 'aws-cdk-lib/aws-s3';
+import { Bucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
 import { Construct } from 'constructs';
 import path from 'path';
+
+const __dirname = import.meta.dirname;
 
 export class StaticSiteStack extends Stack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -13,13 +15,11 @@ export class StaticSiteStack extends Stack {
         const bucket = new Bucket(this, 'MyStaticSiteBucket', {
             websiteIndexDocument: 'index.html',
             websiteErrorDocument: 'index.html',
-            publicReadAccess: true,
-            blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
         });
 
         new BucketDeployment(this, 'BucketDeployment', {
             destinationBucket: bucket,
-            sources: [Source.asset(path.resolve(__dirname, './dist'))],
+            sources: [Source.asset(path.resolve(__dirname, '..', './dist'))],
         });
 
         const originAccessIdentity = new OriginAccessIdentity(
