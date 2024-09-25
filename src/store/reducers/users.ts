@@ -20,7 +20,7 @@ export const fetchUsers = createAsyncThunk<User[]>(
         const users = (await response.json()) as User[];
 
         return users.map((user, index) => ({
-            id: String(index),
+            id: String(index + 1),
             name: user.name,
             username: user.username,
             email: user.email,
@@ -33,6 +33,11 @@ const initialState: UsersState = {
     users: [],
     loading: 'idle',
 } satisfies UsersState;
+
+/**
+ * This slice is used to manage the state of the users.
+ * It includes the users array, loading state, and fetch users thunk.
+ */
 
 export const usersSlice = createSlice({
     name: 'users',

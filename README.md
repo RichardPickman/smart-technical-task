@@ -1,50 +1,55 @@
-# React + TypeScript + Vite
+# Smart Technical Task
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+This is a simple React application that allows users to search for users by their ID, name, username, email, and phone number. The application utilizes Redux for state management and Framer Motion for animations.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+-   Users can search for users by their ID, name, username, email, and phone number.
+-   Users can clear the search query by clicking the clear button.
+-   Users can filter the users list by the search query.
+-   Users can see a loading state while the users list is being fetched.
+-   Users can see an error state if the fetch fails.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+To install the application, follow these steps:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository:
+
+```bash
+git clone https://github.com/smart-tech-team/smart-technical-task.git
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+2. Navigate to the project directory:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+cd smart-technical-task
 ```
+
+3. Install the dependencies:
+
+```bash
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm dev
+```
+
+5. Open the application in your browser:
+
+```bash
+open http://localhost:5173/
+```
+
+## Usage
+
+1. Users can search for users by their ID, name, username, email, and phone number.
+2. Users can clear the search query by clicking the clear button.
+3. Users can filter the users list by the search query.
+4. Users can see a loading state while the users list is being fetched.
+5. Users can see an error state if the fetch fails.

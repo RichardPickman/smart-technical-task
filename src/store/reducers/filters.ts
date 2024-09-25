@@ -19,6 +19,11 @@ const initialState: FilterState = {
     },
 } satisfies FilterState;
 
+/**
+ * This slice is used to manage the state of the filters.
+ * It includes the filter values and setValue thunk.
+ */
+
 export const filterSlice = createSlice({
     name: 'filter',
     initialState,
